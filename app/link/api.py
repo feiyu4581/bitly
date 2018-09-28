@@ -4,6 +4,10 @@ from __future__ import absolute_import
 from flask import request
 from flask_restful import Resource
 
+from app.utils.link_encode import LinkEncode
+
+import time
+
 
 class LinkApi(Resource):
     def get(self):
@@ -12,8 +16,7 @@ class LinkApi(Resource):
         }
 
     def post(self):
-        long_url = request.json.get('long_url')
 
         return {
-            'link': long_url[:10]
+            'link': LinkEncode.generate_new_link()
         }

@@ -1,7 +1,9 @@
 # coding=utf-8
 from __future__ import absolute_import
 
-from flask_restful import Api
+from . import test_link
 
 
-api = Api()
+test_modules = [
+    test_link,
+]

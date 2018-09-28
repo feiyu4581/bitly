@@ -15,6 +15,7 @@ def register_ext(app):
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_pyfile('../config/__init__.py')
 
     register_ext(app)
     register_route(api)
