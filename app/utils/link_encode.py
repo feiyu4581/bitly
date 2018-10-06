@@ -6,6 +6,11 @@ from flask import request
 import hashlib
 import string
 import time
+import re
+
+
+DEFAULT_LENGTH = 7
+shortlink_pattern = re.compile(r'^\w+$')
 
 
 class LinkEncode(object):
@@ -15,7 +20,7 @@ class LinkEncode(object):
     >>> encode.add(time.time())
     >>> encode.hexdigest()
     '''
-    def __init__(self, length=7):
+    def __init__(self, length=DEFAULT_LENGTH):
         self.params = []
         self.encode_mapping = string.ascii_letters + string.digits
         self.length = length
@@ -46,3 +51,11 @@ class LinkEncode(object):
         encode.add(time.time())
 
         return encode.hexdigest()
+
+    @staticmethod
+    def check_shortlink(shortlink, length=DEFAULT_LENGTH):
+        if shortlink and len(shortlink) == length:
+            if shortlink_pattern.match(shortlink):
+                return True
+
+        return False

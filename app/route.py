@@ -1,11 +1,12 @@
 # coding=utf-8
 from __future__ import absolute_import
 
-from app.link.api import LinkApi
+from app.link.api import LinkApi, ShortLinkApi
 
 
 restful_routes = {
-    ('/links', '/links/<int:id>'): LinkApi
+    ('/links', '/links/<int:id>'): LinkApi,
+    '/<string:shortlink>': ShortLinkApi,
 }
 
 
